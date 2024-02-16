@@ -1,0 +1,20 @@
+[
+    {
+        "content": "Great looking pan that seems reliable. I am totally interested in buying.",
+        "created_date": "1/15/24",
+        "listing_id": 1,
+        "user_id": 2
+    },
+    {
+        "content": "Comfy looking chair what Pristine quality rating. This is a steal! I would like to purchase this.",
+        "created_date": "2/12/24",
+        "listing_id": 2,
+        "user_id": 3
+    },
+    {
+        "content": "Poor quality and overpriced. I'm not going to pay this much in order to buy cleaning supplies.",
+        "created_date": "2/09/24",
+        "listing_id": 3,
+        "user_id": 1
+    }
+]
