@@ -26,6 +26,7 @@ if (process.env.JAWSDB_URL) {
     }
   );
 }
+
 // TEST CONNECTION
 sequelize
   .authenticate()
