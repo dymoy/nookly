@@ -3,30 +3,30 @@
         "title": "Frying Pan",
         "description": "Old cast-iron frying pan that has served me well.",
         "category": "Kitchen",
-        "price": "$30",
-        "condition": "Great",
+        "price": 30.00,
+        "condition": "Like-New",
         "created_date": "1/14/24",
-        "is_sold": true,
+        "is_sold": false,
         "user_id": 1
     },
     {
         "title": "Office Chair",
         "description": "Practically brand new Ofiice chair that is brown leather and very comfy.",
         "category": "Office",
-        "price": "$75",
-        "condition": "Pristine",
+        "price": 75.00,
+        "condition": "New",
         "created_date": "2/12/24",
-        "is_sold": true,
+        "is_sold": false,
         "user_id": 2
     },
     {
         "title": "Silverware set",
         "description": "A set of Silver knives, forks, and spoons that are old but with a good clean will look brand new!",
         "category": "Kitchen",
-        "price": "$150",
-        "condition": "Poor",
+        "price": 150.00,
+        "condition": "Fair",
         "created_date": "12/31/23",
-        "is_sold": true,
+        "is_sold": false,
         "user_id": 3
     }
 ]
