@@ -1,7 +1,7 @@
 /**
  * @file userRoutes.js
  * Implements the API routes for the `User` model
- * Supported routes: GET all, GET by id, POST create, PUT update by id, DELETE remove by id
+ * Supported routes: GET all, GET by id, POST create, DELETE remove by id
  */
 
 const router = require('express').Router();
@@ -48,7 +48,7 @@ router.get('/:id', async (req, res) => {
                         attributes: [
                             'id', 
                             'title', 
-                            'description', 
+                            'content', 
                             'category',
                             'price',
                             'condition',
@@ -114,7 +114,7 @@ router.post('/', async (req, res) => {
  * Removes the requested user by id
  * TODO: add withAuth to parameters 
  */
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', withAuth, async (req, res) => {
     try { 
         const userData = await User.destroy({
             where: {
@@ -135,9 +135,65 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
-// TODO: Implement POST /login to check entered login credentials and set session.loggedIn to true
+/**
+ * @route POST '/api/users/login'
+ * Validates user credentials matches the database to log them in 
+ * Sets the session.loggedIn value to true if the email entered exists in the database and the password matches
+ */
+router.post('/login', async (req, res) => {
+    try { 
+        // Find the user in the database by email 
+        const userData = await User.findOne({ 
+            where: { email: req.body.email } 
+        });
 
-// TODO: Implement POST /logout to destroy the current session 
+        // Validate the user was found, else return 400 code for bad request
+        if (!userData) {
+            res.status(400).json({ 
+                message: 'The entered email was not found. Please try again.' 
+            });
+            return;
+        }
+
+        // Validate that the password entered matches the database record, else return 400 code for bad request
+        const validPassword = userData.checkPassword(req.body.password);
+        if (!validPassword) {
+            res.status(400).json({ 
+                message: 'Incorrect password! Please try again.' 
+            });
+            return;
+        }
+
+        // If email and password match the database record, log the user in by saving session data 
+        req.session.save(() => {
+            req.session.user_id = userData.id;
+            req.session.username = userData.username;
+            req.session.loggedIn = true;
+            
+            res.status(200).json({ 
+                user: userData, 
+                message: 'You are now logged in!' 
+            });
+        });
+    } catch(err) {
+        res.status(500).json(err);
+    }
+});
+
+/**
+ * @route POST 'api/users/logout' 
+ * Logs the user out by destroying the session 
+ */
+router.post('/logout', (req, res) => {
+    // If loggedIn value is true, destroy the active session
+    if (req.session.loggedIn) {
+        req.session.destroy(() => {
+            res.status(204).end();
+        });
+    } else {
+        res.status(404).end();
+    }
+});
 
 
 module.exports = router;

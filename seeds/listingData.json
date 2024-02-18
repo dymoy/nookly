@@ -1,7 +1,7 @@
 [
     {
         "title": "Frying Pan",
-        "description": "Old cast-iron frying pan that has served me well.",
+        "content": "Old cast-iron frying pan that has served me well.",
         "category": "Kitchen",
         "price": 30.00,
         "condition": "Like-New",
@@ -11,7 +11,7 @@
     },
     {
         "title": "Office Chair",
-        "description": "Practically brand new Ofiice chair that is brown leather and very comfy.",
+        "content": "Practically brand new Ofiice chair that is brown leather and very comfy.",
         "category": "Office",
         "price": 75.00,
         "condition": "New",
@@ -21,7 +21,7 @@
     },
     {
         "title": "Silverware set",
-        "description": "A set of Silver knives, forks, and spoons that are old but with a good clean will look brand new!",
+        "content": "A set of Silver knives, forks, and spoons that are old but with a good clean will look brand new!",
         "category": "Kitchen",
         "price": 150.00,
         "condition": "Fair",
