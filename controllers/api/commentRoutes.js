@@ -1,10 +1,22 @@
 const router = require('express').Router();
 const { User, Listing, Comment } = require('../../models');
+const withAuth = require('../../utils/auth');
 
 // Finds and returns all comments
 router.get('/', async (req, res) => {
     try {
-        const commentData = await Comment.findAll();
+        const commentData = await Comment.findAll({
+            include: [
+                {
+                    model: User,
+                    attributes: ['id', 'username']
+                },
+                {
+                    model: Listing,
+                    attributes: ['id', 'title', 'content', 'category', 'price', 'condition', 'created_date', 'is_sold']
+                }
+            ]
+        });
         
         if(!commentData) {
             res.status(404).json({
@@ -27,42 +39,43 @@ router.get('/:id', async (req, res) => {
                 include: [
                     {
                         model: User,
-                        attributes: [
-                            'id'
-                        ]
+                        attributes: ['id', 'username']
                     },
                     {
                         model: Listing,
-                        attributes: [
-                            'id'
-                        ]
+                        attributes: ['id', 'title', 'content', 'category', 'price', 'condition', 'created_date', 'is_sold']
                     }
                 ]
-            });
+            }
+        );
 
         res.status(200).json(commentData);
-        }catch (err) {
+        } catch (err) {
             res.status(500).json(err);
         }
     
 })
 
 // Creates a comment
-router.post('/', async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
     try {
-        const commentData = await Comment.create({...req.body,
-      user_id  });
+        if (req.session) {
+            const commentData = await Comment.create({
+                content: req.body.content,
+                listing_id: req.body.listing_id,
+                created_date: new Date(),
+                user_id: req.session.user_id,
+            });
 
-      res.status(200).json({
-        message: 'Comment created!'
-      });
-        }catch (err) {
-            res.status(400).json(err);
+            res.status(200).json(commentData);
         }
+    } catch (err) {
+        res.status(400).json(err);
+    }
 });
 
 // Deletes comment with specific id
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', withAuth, async (req, res) => {
     try{
         const commentData = await Comment.destroy({
             where: {
