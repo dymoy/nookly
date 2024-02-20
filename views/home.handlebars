@@ -1,0 +1,17 @@
+<div>
+    <h3 class="my-4 mb-0">Home</h3>
+</div>
+
+{{!-- Render the posts if they exist in the database --}}  
+{{#if listings.length}}
+    {{#each listings as |listing|}}
+        {{!-- Wrap each post in <a>, which links to homeRoute get by id, so the user can click to expand it --}}
+        <a href="/listings/{{id}}" class="container w-100">
+            {{> renderListing listing}}
+        </a>
+    {{/each}}
+{{else}}
+    <div>
+        <h5  class="my-5">No listings to show!</h5>
+    </div>
+{{/if}}
