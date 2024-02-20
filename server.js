@@ -17,6 +17,20 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+/* Set up multer to define where files should be saved */
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './uploads')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname)
+  }
+});
+
+var upload = multer({ storage: storage });
+
+app.use('/uploads', express.static('uploads'));
+
 /* Set up Handlebars.js engine with custom helpers */
 const hbs = exphbs.create({ helpers });
 

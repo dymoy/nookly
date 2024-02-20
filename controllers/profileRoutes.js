@@ -50,7 +50,10 @@ router.get('/', withAuth, async (req, res) => {
     }
 });
 
-// TODO: Add route to GET '/profile/addListing' 
+/**
+ * @route GET '/addListing'
+ * Checks the session user, finds the listing data for the user, and returns data to render in addListing.handlebars
+ */
 router.get('/addListing', withAuth, async (req, res) => {
     try {
         const listingData = await Listing.findAll({
