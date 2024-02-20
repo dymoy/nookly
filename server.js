@@ -2,13 +2,15 @@
 const path = require('path');
 const express = require('express');
 const exphbs = require('express-handlebars');
+const session = require('express-session');
 
 /* Require local routes and helpers */
 const routes = require('./controllers');
 const helpers = require('./utils/helpers');
 
-/* Require sequelize */
+/* Require sequelize and sequelize store for session */
 const sequelize = require('./config/connection');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 /* Instantiate the express app */
 const app = express();
@@ -17,7 +19,20 @@ const PORT = process.env.PORT || 3001;
 /* Set up Handlebars.js engine with custom helpers */
 const hbs = exphbs.create({ helpers });
 
-// TODO: Set up express session
+const sess = {
+  secret: 'nookly-cranly',
+  cookie: {
+    // Set the session time limit to 15 minutes
+    maxAge: 15 * 30 * 1000
+  },
+  resave: false,
+  saveUninitialized: true,
+  store: new SequelizeStore({
+    db: sequelize
+  })
+};
+
+app.use(session(sess));
 
 /* Inform Express.js to use template engine handlebars */
 app.engine('handlebars', hbs.engine);
