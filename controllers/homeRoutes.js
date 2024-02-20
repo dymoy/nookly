@@ -10,7 +10,7 @@ const { Listing, User, Comment } = require('../models');
 
 /**
  * @route GET '/' 
- * Finds and returns all `Listings` in the database to render in homepage.handlebars
+ * Finds and returns all `Listings` in the database to render in home.handlebars
  */
 router.get('/', async (req, res) => {
     try {
@@ -41,7 +41,7 @@ router.get('/', async (req, res) => {
             return;
         }
 
-        // Serialize and render the post data in homepage.handlebars
+        // Serialize and render the listing data in home.handlebars
         const listings = listingData.map(listing => listing.get({ plain: true }));
         res.render('home', { 
             listings,
@@ -52,49 +52,8 @@ router.get('/', async (req, res) => {
     }
 });
 
-/**
- * @route GET '/:id'
- * Finds and and returns Post data by id to render in single-post.handlebars
- */
-router.get('/:id', async (req, res) => {
-    try { 
-        const listingData = await Listing.findByPk(
-            req.params.id, 
-            {
-                include: [
-                    { 
-                        model: User,
-                        attributes: ['id', 'username'],
-                    },
-                    {
-                        model: Comment,
-                        attributes: ['id', 'content', 'created_date'],
-                        include: {
-                            model: User,
-                            attributes: ['id', 'username']
-                        }
-                    }
-                ]
-        });
-        
-        if (!listingData) {
-            res.status(404).json({
-                message: 'No listing data was found for the requested id.'
-            });
-            return;
-        }
-
-        // Serialize and render the listing data in single-post.handlebars
-        const listing = listingData.get({ plain: true});
-        req.render('single-post', {
-            listing,
-            loggedIn: req.session.loggedIn
-        });
-    } catch (err) {
-        res.status(500).json(err);
-    }
-});
-
+// TODO: GET '/listing/:id' - allows users to expand listings to comment on them
+ 
 /**
  * @route GET '/login'
  * Redirects the user to login.handlebars page
@@ -120,7 +79,7 @@ router.get('/login', (req, res) => {
  */
 router.get('/signup', (req, res) => {
     try { 
-        // If the user is logged in, redirect them to the homepage.handlebars page
+        // If the user is logged in, redirect them to the home.handlebars page
         if (req.session.loggedIn) {
           res.redirect('/');
           return;

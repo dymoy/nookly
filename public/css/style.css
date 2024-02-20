@@ -36,7 +36,7 @@
   }
   
   header {
-    padding: 20px;
+    padding: 10px;
     text-align: center;
     background: var(--primary);
     color: var(--light);
@@ -60,6 +60,7 @@
     text-decoration: none;
     text-align: center;
     background-color: var(--secondary);
+    color: var(--light);
   }
   
   nav a:hover {
