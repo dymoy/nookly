@@ -3,13 +3,8 @@
 
 // document.getElementById('add-comment').addEventListener('click', addComment);
 function addComment() {
-    const content = document.getElementById('comment-content').value;
-    const listingId = document.getElementById('listing-id').value;
-
-    const data = {
-        content,
-        listingId
-    }
+    const content = document.querySelector('#comment-content').value;
+    const listingId = document.querySelector('#listing-id').value;
 
     fetch('/api/comment', {
         method: 'POST',
@@ -29,7 +24,7 @@ function addComment() {
         console.log(err);
     })
     .finally(() => {
-        document.getElementById('comment-content').value = '';
+        document.querySelector('#comment-content').value = '';
     })
 }
 
