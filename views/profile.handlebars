@@ -3,6 +3,8 @@
 </div>
 
 {{!-- Render the listings if they exist in the database --}}
+<a href="/profile/addListing"><button id="add-listing-btn" class="button">+ New Listing</button></a>
+
 {{#if listings.length}}
     <div class="container">
         {{#each listings as |listing|}}

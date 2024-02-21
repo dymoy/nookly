@@ -112,7 +112,6 @@ router.post('/', async (req, res) => {
 /**
  * @route DELETE '/api/users/:id'
  * Removes the requested user by id
- * TODO: add withAuth to parameters 
  */
 router.delete('/:id', withAuth, async (req, res) => {
     try { 

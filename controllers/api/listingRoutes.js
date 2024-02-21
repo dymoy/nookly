@@ -97,6 +97,7 @@ router.post('/', withAuth, async (req, res) => {
             category: req.body.category,
             price: req.body.price,
             condition: req.body.condition,
+            img_file_name: req.body.img_file_name,
 
             created_date: new Date(),
             is_sold: false,
