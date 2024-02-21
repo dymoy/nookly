@@ -39,6 +39,10 @@ Listing.init(
             type: DataTypes.BOOLEAN,
             allowNull: false
         },
+        img_file_name: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
         user_id: {
             type: DataTypes.INTEGER,
             allowNull: false,

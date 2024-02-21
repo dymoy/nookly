@@ -7,7 +7,8 @@
         "condition": "Like-New",
         "created_date": "1/14/24",
         "is_sold": false,
-        "user_id": 1
+        "user_id": 1,
+        "img_file_name": "fryingpan.jpeg"
     },
     {
         "title": "Office Chair",
@@ -17,7 +18,8 @@
         "condition": "New",
         "created_date": "2/12/24",
         "is_sold": false,
-        "user_id": 2
+        "user_id": 2,
+        "img_file_name": "officechair.jpeg"
     },
     {
         "title": "Silverware set",
@@ -27,6 +29,7 @@
         "condition": "Fair",
         "created_date": "12/31/23",
         "is_sold": false,
-        "user_id": 3
+        "user_id": 3,
+        "img_file_name": "silverware.jpeg"
     }
 ]
