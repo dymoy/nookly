@@ -53,6 +53,28 @@ router.get('/', async (req, res) => {
 });
 
 // TODO: GET '/listing/:id' - allows users to expand listings to comment on them
+router.get('/listing/:id', async (req, res) => {
+    try {
+        const listingData = await Listing.findByPk(req.params.id, {
+            include: [
+                {
+                    model: User,
+                    attributes: ['id', 'username']
+                },
+                {
+                    model: Comment,
+                    attributes: ['id', 'content', 'created_date'],
+                    include: {
+                        model: User,
+                        attributes: ['id', 'username']
+                    }
+                }
+            ]
+                })
+    } catch (err) {
+        res.status(500).json(err);
+    };
+});
  
 /**
  * @route GET '/login'
