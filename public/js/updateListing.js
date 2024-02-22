@@ -47,7 +47,7 @@ async function updateListingFormHandler(event) {
     const condition = document.getElementById('listing-condition').value;
     const content = document.getElementById('listing-content').value;
 
-    // Call the listingRoutes.js PUT api route to update the listing in the database by id
+    // Call the listingRoutes PUT api route to update the listing in the database by id
     const listing_res = await fetch(`/api/listings/${id}`, {
         method: 'PUT',
         body: JSON.stringify({
