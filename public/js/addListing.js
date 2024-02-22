@@ -59,7 +59,7 @@ async function newListingFormHandler(event) {
             headers: {'Content-Type': 'application/json'}
         });
 
-        // Redirect the user back to the profile page when the post has been created
+        // Redirect the user back to the profile page when the listing has been created
         if(listing_res.ok) {
             document.location.replace('/profile');
         } else {
