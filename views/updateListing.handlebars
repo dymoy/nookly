@@ -7,12 +7,18 @@
     </div>
     <div class="card-body">
         <form class="form d-flex flex-column update-listing-form">
-            <div class="row d-flex flex-row justify-content-evenly">
-                <div class="listing-img col-md-4 my-auto d-flex flex-column justify-content-center">
-                    <label for="listing-img">Upload listing picture</label>
-                    <input type="file" id="listing-img" name="listing-img" accept="image/*"/>
+            <div class="row d-flex flex-row justify-content-center">
+                <div class="col-md-4 w-auto">
+                    {{!-- TODO: Add this to PUT body in updateListing.js --}}
+                    <div class="form-check form-switch mb-3">
+                        <label class="form-check-label" for="listing-is-sold">Mark Sold</label>
+                        <input class="form-check-input" type="checkbox" role="switch" id="listing-is-sold">
+                    </div>
+                    <div class="listing-img my-auto d-flex flex-column justify-content-center">
+                        <label for="listing-img">Upload listing picture</label>
+                        <input type="file" id="listing-img" name="listing-img" accept="image/*" class="w-90"/>
+                    </div>
                 </div>
-
                 <div class="col-md-8">
                     <label for="listing-title">Title</label>
                     <input class="input col-md-12 mb-3" type="text" id="listing-title" name="listing-title" placeholder="Enter listing title" value="{{listing.title}}"/>
