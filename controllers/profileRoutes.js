@@ -91,5 +91,44 @@ router.get('/addListing', withAuth, async (req, res) => {
 });
 
 // TODO: Add route to GET '/profile/update/:id'
+router.get('/update/:id', withAuth, async (req, res) => {
+    try {
+        const listingData = await Listing.findOne({
+            where: {
+                id: req.params.id,
+            },
+            include: [
+                { 
+                    model: User,
+                    attributes: ['id', 'username'],
+                },
+                {
+                    model: Comment,
+                    attributes: ['id', 'content', 'created_date'],
+                    include: {
+                        model: User,
+                        attributes: ['id', 'username']
+                    }
+                }
+            ]
+        });
+
+        if (!listingData) {
+            res.status(404).json({
+                message: 'No listing data was found for the requested id.'
+            });
+            return;
+        }
+
+        // Serialize and render the data in update-post.handlebars
+        const listing = listingData.get({ plain: true });
+        res.render('updateListing', {
+            listing,
+            loggedIn: true,
+        });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
 
 module.exports = router;
