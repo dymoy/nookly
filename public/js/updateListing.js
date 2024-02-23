@@ -7,8 +7,6 @@
 async function updateListingFormHandler(event) {
 	event.preventDefault();
 
-    console.log("Entered update form handler...");
-
     // Retrieve the post ID from window
     const id = window.location.toString().split('/')[
         window.location.toString().split('/').length - 1
@@ -46,6 +44,7 @@ async function updateListingFormHandler(event) {
     const category = document.getElementById('listing-category').value;
     const condition = document.getElementById('listing-condition').value;
     const content = document.getElementById('listing-content').value;
+    const is_sold = document.getElementById('listing-is-sold').checked;
 
     // Call the listingRoutes PUT api route to update the listing in the database by id
     const listing_res = await fetch(`/api/listings/${id}`, {
@@ -56,7 +55,8 @@ async function updateListingFormHandler(event) {
             category,
             condition,
             content,
-            img_file_name
+            img_file_name,
+            is_sold
         }),
         headers: {'Content-Type': 'application/json'}
     });
