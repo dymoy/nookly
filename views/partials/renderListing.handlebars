@@ -2,6 +2,9 @@
    <div class="card-header justify-content-between">
         <div class="listing-title flex-wrap is-dark-light my-auto">
             {{title}}
+            {{#if is_sold}}
+                <span class="p-1 m-1" style="border: 1px #fa9e3b solid; color: #fa9e3b">SOLD!</span>
+            {{/if}}
         </div>
         <div class="user-info flex-wrap my-auto">
             Posted by {{user.username}} on {{format_date created_date}}

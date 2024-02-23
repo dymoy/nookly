@@ -9,7 +9,7 @@ async function logout() {
       headers: { 'Content-Type': 'application/json' }
     });
   
-    // Redirect the user to the homepage 
+    // Redirect the user to the home page 
     if (response.ok) {
       document.location.replace('/');
     } else {

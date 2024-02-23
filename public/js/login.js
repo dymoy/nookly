@@ -20,7 +20,7 @@ async function loginFormHandler(event) {
 			headers: { 'Content-Type': 'application/json' },
     	});
 
-		// If successful, redirect the browser to the dashboard page
+		// If successful, redirect the browser to the profile page
 		if (response.ok) {
 			document.location.replace('/profile');
 		} else {

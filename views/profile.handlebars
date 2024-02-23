@@ -2,18 +2,22 @@
     <h3 class="my-4">My Profile</h3>
 </div>
 
-{{!-- Render the listings if they exist in the database --}}
+{{!-- Add button for new listing option  --}}
 <a href="/profile/addListing"><button id="add-listing-btn" class="button">+ New Listing</button></a>
 
+{{!-- Render the listings if they exist in the database for the user --}}
 {{#if listings.length}}
     <div class="container">
         {{#each listings as |listing|}}
-            {{!-- TODO: Wrap each post in <a>, which links to dashboard route get post by id, so the user can click to expand it --}}
-            {{> renderListing listing}}
+            {{!-- Wrap each post in <a>, which links to profile route get post by id, so the user can click to expand it --}}
+            <a href="/profile/update/{{listing.id}}" class="container w-100">
+                {{> renderListing listing}}
+            </a>
         {{/each}}
     </div>
 {{else}}
     <div>
+        {{!-- If no listings exist, let the user know there are no listings to show --}}
         <h5 class="my-5">You don't have any listings yet! Click the "New Listing" button to get started.</h5>
     </div>
 {{/if}}

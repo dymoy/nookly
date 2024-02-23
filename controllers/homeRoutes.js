@@ -13,6 +13,10 @@ const { Listing, User, Comment } = require("../models");
 router.get("/", async (req, res) => {
   try {
     const listingData = await Listing.findAll({
+      // Only get listings if its not marked sold
+      where: {
+        is_sold: false
+      }, 
       // Order the data by created_date in descending order
       order: [["created_date", "DESC"]],
       include: [
