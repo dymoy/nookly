@@ -1,24 +1,24 @@
 <div class="card">
-    <div class="card-header d-flex flex-direction-row justify-content-between">
-        <div class="listing-title is-dark-light my-auto">
-            {{title}} 
+   <div class="card-header justify-content-between">
+        <div class="listing-title flex-wrap is-dark-light my-auto">
+            {{title}}
             {{#if is_sold}}
                 <span class="p-1 m-1" style="border: 1px #fa9e3b solid; color: #fa9e3b">SOLD!</span>
             {{/if}}
         </div>
-        <div class="user-info my-auto">
+        <div class="user-info flex-wrap my-auto">
             Posted by {{user.username}} on {{format_date created_date}}
         </div>
     </div>
-    <div class="card-body d-flex flex-direction-row justify-content-between">
-        <div class="listing-img col-md-4">
-            <img src="/uploads/{{img_file_name}}"></img>
+    <div class="card-body justify-content-between">
+        <div class="listing-img col-md-4 flex-wrap">
+          <img class="img-fluid" src="/uploads/{{img_file_name}}"></img>
         </div>
-        <div class="listing-info col-md-8">
-            <div class="listing-detail mb-2">
+       <div class="listing-info col-md-8 flex-wrap">
+            <div class="listing-detail flex-wrap mb-2">
                 ${{price}} &#149; {{category}} &#149; {{condition}}
             </div>
-            <div class="listing-content my-auto">
+            <div class="listing-content my-auto flex-wrap">
                 {{content}}
             </div>
         </div>
