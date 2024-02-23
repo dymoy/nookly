@@ -1,7 +1,10 @@
 <div class="card">
     <div class="card-header d-flex flex-direction-row justify-content-between">
         <div class="listing-title is-dark-light my-auto">
-            {{title}}
+            {{title}} 
+            {{#if is_sold}}
+                <span class="p-1 m-1" style="border: 1px #fa9e3b solid; color: #fa9e3b">SOLD!</span>
+            {{/if}}
         </div>
         <div class="user-info my-auto">
             Posted by {{user.username}} on {{format_date created_date}}

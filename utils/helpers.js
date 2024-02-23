@@ -9,6 +9,11 @@ module.exports = {
     	return options.fn(this).replace(
         	new RegExp(' value=\"' + selected + '\"'),
         	'$& selected="selected"');
-    }
+    },
+
+	checked: (is_sold) => {
+		// return "checked" if is_sold attribute is currently set to true, else return empty string
+		return (is_sold) ? "checked" : "";
+	}
 };
   
