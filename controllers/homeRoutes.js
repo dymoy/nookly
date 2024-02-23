@@ -81,7 +81,7 @@ router.get("/listing/:id", async (req, res) => {
       plain: true,
     });
 
-    res.render("listing", {
+    res.render("singleListing", {
       listing,
       loggedIn: req.session.loggedIn,
     });
