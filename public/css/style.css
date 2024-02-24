@@ -165,4 +165,27 @@ footer {
 .is-light-text {
     color: var(--light);
 }
-  
+
+@media screen and (max-width: 991px) {
+  /* something here */
+  .card-body{ 
+    font-size: .8rem;
+  }
+
+  .listing-img {
+        width: 180px;
+        height: 180px;
+        border: 2px solid var(--secondary);
+        justify-self: center;
+        align-self: center;
+    }
+}
+
+@media screen and (max-width: 660px) {
+    .listing-img {
+        width: 130px;
+        height: 130px;
+        border: 2px solid var(--secondary);
+    }
+
+}
