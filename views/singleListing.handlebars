@@ -1,0 +1,29 @@
+{{!-- Add back button to return to Home page --}}
+<div class="d-flex justify-content-start w-100">
+    <a href="/" class="back-btn mt-3" type="button"> &#60; Back to Home</a>
+</div>
+
+{{!-- Render the listing that was clicked --}}
+{{> renderListing listing}}
+
+{{!-- Render the existing comments for the listing --}}
+{{> renderComments listing.comments}}
+
+{{!-- Allow the user to enter a comment if they're logged in --}}
+{{#if loggedIn}}
+<div class="card new-comment-card">
+    <div class="card-header"></div>
+    <div class="card-body">
+        <form class="form new-comment-form">
+            <div class="mt-2">
+                <textarea class="input w-100" type="text" id="comment-content" name="comment-content" placeholder="Enter comment"></textarea>
+            </div>
+            <div class="user-options d-flex flex-direction-col justify-content-evenly">
+                <button type="submit" class="button col-md-5 mt-3 mb-2">+ Add</button>
+            </div>
+        </form>
+    </div>
+</div>  
+
+<script src="/js/addComment.js"></script>
+{{/if}}

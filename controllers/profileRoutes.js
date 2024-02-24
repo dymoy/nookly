@@ -90,7 +90,10 @@ router.get('/addListing', withAuth, async (req, res) => {
     }
 });
 
-// TODO: Add route to GET '/profile/update/:id'
+/**
+ * @route GET '/update/:id'
+ * Checks the session user, finds the Listing data by id for the user, and returns data to render in updateListing.handlebars
+ */
 router.get('/update/:id', withAuth, async (req, res) => {
     try {
         const listingData = await Listing.findOne({

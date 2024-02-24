@@ -1,5 +1,14 @@
+/**
+ * @file Comment.js
+ * Defines the Sequelize model `Comment` with the following attributes: 
+ *  - id 
+ *  - content
+ *  - created_date
+ *  - listing_id (references `Listing` model by `id`) - the listing of which the comment is replied to 
+ *  - user_id (refrences `User` model by `id`) - the user that created the comment
+ */
+
 const { Model, DataTypes } = require ('sequelize');
-const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 
 class Comment extends Model { }

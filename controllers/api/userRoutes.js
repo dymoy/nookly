@@ -1,7 +1,7 @@
 /**
  * @file userRoutes.js
  * Implements the API routes for the `User` model
- * Supported routes: GET all, GET by id, POST create, DELETE remove by id
+ * Supported routes: GET all, GET by id, POST create, DELETE remove by id, POST login, POST logout
  */
 
 const router = require('express').Router();

@@ -1,3 +1,12 @@
+/**
+ * @file User.js
+ * Defines the Sequelize model `User` with the following attributes: 
+ *  - id 
+ *  - username
+ *  - email
+ *  - password
+ */
+
 const { Model, DataTypes } = require ('sequelize');
 const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
@@ -32,6 +41,7 @@ User.init(
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
+                // Validate that the password is at least 8 characters long 
                 len: [8]
             }
         }
@@ -52,4 +62,4 @@ User.init(
     }
 );
     
-    module.exports = User;
+module.exports = User;
