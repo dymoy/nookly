@@ -24,11 +24,11 @@ async function loginFormHandler(event) {
 		if (response.ok) {
 			document.location.replace('/profile');
 		} else {
-			alert('Failed to login.');
+			alert('Failed to login. The email or password entered is incorrect or does not exist.');
 		}
 	} else {
 		document.location.reload();
-		alert("Please enter username and password.");
+		alert("Please enter username and password to log into your account.");
 	}
 };
   
