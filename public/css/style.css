@@ -166,18 +166,22 @@ footer {
     color: var(--light);
 }
 
+/* MEDIA QUERIES */
 @media screen and (max-width: 991px) {
-  /* something here */
-  .card-body{ 
-    font-size: .8rem;
-  }
+    .card-body{ 
+        font-size: .8rem;
+    }
 
-  .listing-img {
+    .listing-img {  
         width: 180px;
         height: 180px;
         border: 2px solid var(--secondary);
         justify-self: center;
         align-self: center;
+    }
+
+    .listing-content {
+        text-align: start;
     }
 }
 
