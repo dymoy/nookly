@@ -87,10 +87,8 @@ router.get("/listing/:id", async (req, res) => {
 		return;
     }
 
-    const listing = listingData.get({
-      	plain: true,
-    });
-
+	// Serialize the listing data and render it in singleListing.hbs
+    const listing = listingData.get({ plain: true, });
     res.render("singleListing", {
 		listing,
 		loggedIn: req.session.loggedIn,
