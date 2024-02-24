@@ -1,5 +1,19 @@
+/**
+ * @file Listing.js
+ * Defines the Sequelize model `Listing` with the following attributes: 
+ *  - id 
+ *  - title
+ *  - content
+ *  - category 
+ *  - price 
+ *  - condition 
+ *  - created_date 
+ *  - is_sold 
+ *  - img_file_name
+ *  - user_id (references `User` model `id`) - the user that created the listing
+ */
+
 const { Model, DataTypes } = require ('sequelize');
-const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 
 class Listing extends Model {}

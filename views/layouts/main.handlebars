@@ -21,6 +21,7 @@
             <a href="/" class="mx-4">nookly</a>
         </h1>
         <nav class="navbar mx-4">
+            {{!-- Update the anchor href based on whether the user is signed in --}}
             {{#if loggedIn}}
                 <a href="/" class="navbar-item">Home</a>
                 <a href="/profile" class="navbar-item">Profile</a>

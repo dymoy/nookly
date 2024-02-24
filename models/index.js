@@ -1,3 +1,8 @@
+/**
+ * @file index.js
+ * Executes association methods on the Sequelize models to create relationships between them
+ */
+
 const User = require('./User');
 const Listing = require('./Listing');
 const Comment = require('./Comment');

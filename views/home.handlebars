@@ -5,8 +5,10 @@
 {{!-- Render the listings if they exist in the database --}}  
 {{#if listings.length}}
     {{#each listings as |listing|}}
-        {{!-- TODO: Wrap each listing in <a>, which links to homeRoute get by id, so the user can click to expand it --}}
-        {{> renderListing listing}}
+        {{!-- Wrap each listing in <a>, which links to homeRoute api route for GET by id, so the user can click to expand it --}}
+        <a href="/listing/{{listing.id}}" class="container w-100"> 
+            {{> renderListing listing}}
+        </a>
     {{/each}}
 {{else}}
     <div>

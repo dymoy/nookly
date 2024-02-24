@@ -7,7 +7,7 @@
 async function updateListingFormHandler(event) {
 	event.preventDefault();
 
-    // Retrieve the post ID from window
+    // Retrieve the listing ID from window
     const id = window.location.toString().split('/')[
         window.location.toString().split('/').length - 1
     ];

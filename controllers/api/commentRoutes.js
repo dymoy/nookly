@@ -1,8 +1,17 @@
+/**
+ * @file commentRoutes.js
+ * Implements the API routes for the `Comment` model
+ * Supported routes: GET read all, POST create, DELETE remove by id
+ */
+
 const router = require('express').Router();
 const { User, Listing, Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-// Finds and returns all comments
+/**
+ * @route GET '/api/comments/'
+ * Finds and returns all Comment data in the database, including associated User and Listing data 
+ */
 router.get('/', async (req, res) => {
     try {
         const commentData = await Comment.findAll({
@@ -30,33 +39,10 @@ router.get('/', async (req, res) => {
           }
 });
 
-// Finds a specific comment  with the requested id that includes an id from the User and Listing as well
-router.get('/:id', async (req, res) => {
-    try {
-        const commentData = await Comment.findByPk(req.params.id,
-            {
-                attributes: ['id', 'content', 'created_date'],
-                include: [
-                    {
-                        model: User,
-                        attributes: ['id', 'username']
-                    },
-                    {
-                        model: Listing,
-                        attributes: ['id', 'title', 'content', 'category', 'price', 'condition', 'created_date', 'is_sold']
-                    }
-                ]
-            }
-        );
-
-        res.status(200).json(commentData);
-        } catch (err) {
-            res.status(500).json(err);
-        }
-    
-})
-
-// Creates a comment
+/**
+ * @route POST '/api/comments/'
+ * Creates a Comment using req.body and req.session information
+ */
 router.post('/', withAuth, async (req, res) => {
     try {
         if (req.session) {
@@ -74,7 +60,10 @@ router.post('/', withAuth, async (req, res) => {
     }
 });
 
-// Deletes comment with specific id
+/**
+ * @route DELETE '/api/comments/:id'
+ * Deletes a Comment by id 
+ */
 router.delete('/:id', withAuth, async (req, res) => {
     try{
         const commentData = await Comment.destroy({

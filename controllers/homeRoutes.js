@@ -1,7 +1,9 @@
-// * @file homeRoutes.js
-// * Implements the home page API routes to render handlebars files
-// *
-// * @see  ../views/home.handlebars
+/**
+ * @file homeRoutes.js
+ * Implements the home page API routes to render handlebars files
+ *
+ * @see  ../views/home.handlebars
+ */
 
 const router = require("express").Router();
 const { Listing, User, Comment } = require("../models");
@@ -15,79 +17,83 @@ router.get("/", async (req, res) => {
     const listingData = await Listing.findAll({
       // Only get listings if its not marked sold
       where: {
-        is_sold: false
+        	is_sold: false
       }, 
       // Order the data by created_date in descending order
       order: [["created_date", "DESC"]],
       include: [
-        {
-          model: User,
-          attributes: ["id", "username"],
-        },
-        {
-          model: Comment,
-          attributes: ["id", "content", "created_date"],
-          include: {
-            model: User,
-            attributes: ["id", "username"],
-          },
-        },
-      ],
-    });
+			{
+				model: User,
+				attributes: ["id", "username"],
+			},
+			{
+				model: Comment,
+				attributes: ["id", "content", "created_date"],
+				include: {
+						model: User,
+						attributes: ["id", "username"],
+					},
+			},
+      	],
+	});
 
     // Validate listing data was found in the database
     if (!listingData) {
-      res.status(404).json({
-        message: "No listing data was found in the database.",
-      });
-      return;
+		res.status(404).json({
+			message: "No listing data was found in the database.",
+		});
+		return;
     }
 
     // Serialize and render the listing data in home.handlebars
     const listings = listingData.map((listing) => listing.get({ plain: true }));
     res.render("home", {
-      listings,
-      loggedIn: req.session.loggedIn,
+		listings,
+		loggedIn: req.session.loggedIn,
     });
   } catch (err) {
-    res.status(500).json(err);
+	res.status(500).json(err);
   }
 });
 
-// DONE BY Ryan: GET '/listing/:id' - allows users to expand listings to comment on them
+/**
+ * @route GET '/lising/:id' 
+ * 
+ * Retreives the requested listing data and renders it in singleListing.hbs
+ */
 router.get("/listing/:id", async (req, res) => {
   try {
     const listingData = await Listing.findByPk(req.params.id, {
-      include: [
-        {
-          model: User,
-          attributes: ["id", "username"],
-        },
-        {
-          model: Comment,
-          attributes: ["id", "content", "created_date"],
-          include: {
-            model: User,
-            attributes: ["id", "username"],
-          },
-        },
-      ],
+		include: [
+			{
+				model: User,
+				attributes: ["id", "username"],
+			},
+			{
+				model: Comment,
+				attributes: ["id", "content", "created_date"],
+				include: {
+					model: User,
+					attributes: ["id", "username"],
+				},
+			},
+		],
     });
 
     if (!listingData) {
-      res.status(404).json({
-        message: "No listing data was found in the database.",
-      });
-      return;
+		res.status(404).json({
+			message: "No listing data was found in the database.",
+		});
+		return;
     }
 
     const listing = listingData.get({
-      plain: true,
+      	plain: true,
     });
 
-    res.render("listing", {
-      listing,
-      loggedIn: req.session.loggedIn,
+    res.render("singleListing", {
+		listing,
+		loggedIn: req.session.loggedIn,
     });
   } catch (err) {
     res.status(500).json(err);
