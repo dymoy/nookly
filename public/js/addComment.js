@@ -33,6 +33,9 @@ async function addCommentFormHandler(event) {
 		} else {
 			alert(response.statusText);
 		}
+	} else {
+		document.location.reload();
+		alert("Please write a comment to add it to the listing.");
 	}
 }
 

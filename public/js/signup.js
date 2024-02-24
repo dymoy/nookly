@@ -24,11 +24,11 @@ async function signupFormHandler(event) {
 		if (response.ok) {
 			document.location.replace('/profile');
 		} else {
-			alert('Failed to sign up.');
+			alert('Failed to sign up. Please verify you entered a valid email and a password of over 8 characters.');
 		}
     } else {
 		document.location.reload();
-		alert("Please enter username, password, and email.");
+		alert("Please enter username, password, and email to sign up.");
 	}
 };
 
