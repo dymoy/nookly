@@ -75,13 +75,12 @@ footer {
   
 /* CARDS */
 .card {
-    margin: 20px;
     flex: 0 1 auto;
     border: 7px double var(--dark);
     border-radius: 10px;
     background-color: var(--light);
     color: var(--dark);
-    width: 70%;
+    width: 100%;
 }
   
 .comment-card,

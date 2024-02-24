@@ -6,7 +6,7 @@
 {{#if listings.length}}
     {{#each listings as |listing|}}
         {{!-- Wrap each listing in <a>, which links to homeRoute api route for GET by id, so the user can click to expand it --}}
-        <a href="/listing/{{listing.id}}" class="container w-100"> 
+        <a href="/listing/{{listing.id}}" class="container w-75 p-0 m-3"> 
             {{> renderListing listing}}
         </a>
     {{/each}}

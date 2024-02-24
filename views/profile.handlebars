@@ -12,7 +12,7 @@
     <div class="container">
         {{#each listings as |listing|}}
             {{!-- Wrap each listing in <a>, which links to profile route get listing by id, so the user can click to expand it --}}
-            <a href="/profile/update/{{listing.id}}" class="container w-100">
+            <a href="/profile/update/{{listing.id}}" class="container w-75 p-0 m-3">
                 {{> renderListing listing}}
             </a>
         {{/each}}
