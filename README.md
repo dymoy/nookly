@@ -30,7 +30,7 @@ The database is mapped according to the following schema:
   
 ## Installation 
 
-There is no installation necessary as it is deployed to Heroku. You can visit the deployed application [here]() and try it out! 
+There is no installation necessary as it is deployed to Heroku. You can visit the deployed application [here](https://dymoy-nookly-ba5930951a44.herokuapp.com/) and try it out! 
 
 If you would like to run the application locally, use the following steps:
 1. Clone this repository to your local machine. (For reference, visit the [Cloning a Repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) GitHub Docs article.)
