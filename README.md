@@ -9,7 +9,6 @@ Nookly is an application that follows the MVC paradigm in its architectural stru
 
 Our platform connects sellers with buyers that are passionate about sustainability and creating a seamless marketplace for recycling within your community. Join us in reshaping the way we think about decluttering!
 
-
 This project defines 3 Sequelize models and utilizes the `express-session` model: 
 1. `User`
 2. `Listing`
@@ -58,20 +57,31 @@ This project requires the following npm package dependencies:
 ## Usage 
 
 The animation gif below demonstrates the app's functionality:  
-![Animation Gif of app functionality]()  
+![Animation Gif of app functionality](./assets/docs/nookly_usage.gif)  
 
 ### Home Page Usage
+- The user will see listings on the Home page that are not sold yet 
+- The user will be able to click each listing to expand it and view comments 
+    - Once the user is logged in, they will be able to add comments of their own under listings 
+- Each listing will have a comment count displayed to show the user how much attention the listing is getting
 
 ### Profile Page Usage 
+- Once logged in, the user will be able to access their profile, where listings they have created will appear 
+- Clicking the 'New Listing' button will render a card that prompts the user to enter information about their new listing, as well as an image 
+- Once the listing is created, the user may click on each lisiting in their profile to update or delete it 
+    - If the user marks the listing as sold, there will be a 'SOLD!' indicator on the corresponding post 
+    - Once a listing is marked sold, it will be removed from the Home page
 
 ### Login Page Usage 
-- The user will have the option to login if they already have an account, or press the `Sign Up Instead` to create an account. 
-- Once logged in, the user will be redirected to their Dashboard page. 
-    - They will then be able to create new posts in the dashboard page and add comments in the home page.
+- The user will have the option to login if they already have an account, or press the `Sign Up Instead` to create an account
+- Once logged in, the user will be redirected to their Profile page
+    - They will then be able to create new listings in the Profile page and add comments in the home page
+- The user will be alerted with an error if their credentials are incorrect 
 
 ### Sign Up Page Usage
-- The user will be able to create an account by filling all fields for the username, email, and password.
-- If the user already has an account, they can press the `Login Instead` button to be redirected to the login page.
+- The user will be able to create an account by filling all fields for the username, email, and password
+- If the user already has an account, they can press the `Login Instead` button to be redirected to the login page
+- Sign up will fail if the user doesn't enter a valid email or a password over 8 charaters long
 
 ## Testing 
 No test suites have been written for this application. The API routes were tested locally during development with the [Insomnia](https://docs.insomnia.rest/) development platform.  
