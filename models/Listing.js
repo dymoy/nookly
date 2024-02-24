@@ -71,7 +71,7 @@ Listing.init(
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'Listing',
+        modelName: 'listing',
     }
 );
     
