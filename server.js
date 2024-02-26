@@ -3,7 +3,10 @@ const path = require('path');
 const express = require('express');
 const exphbs = require('express-handlebars');
 const session = require('express-session');
-const multer = require('multer');
+const multer = require("multer");
+const multerS3 = require("multer-s3");
+const { S3Client } = require("@aws-sdk/client-s3");
+require('dotenv').config();
 
 /* Require local routes and helpers */
 const routes = require('./controllers');
@@ -21,7 +24,7 @@ const PORT = process.env.PORT || 3001;
 const hbs = exphbs.create({ helpers });
 
 const sess = {
-	secret: 'nookly-cranly',
+	secret: process.env.SESS_SECRET,
 	cookie: {
 		// Set the session time limit to 15 minutes
 		maxAge: 15 * 30 * 1000
@@ -48,21 +51,40 @@ app.use("/uploads", express.static(path.join(__dirname, "/public/uploads")));
 app.use(routes);
 
 /* Set up multer to define where files should be saved */
-var storage = multer.diskStorage({
-	destination: function (req, file, cb) {
-		cb(null, './public/uploads');
+const s3 = new S3Client({
+	credentials: {
+        accessKeyId: process.env.AWS_ACCESS_KEY,
+        secretAccessKey: process.env.AWS_SECRET_KEY
+    },
+    region: process.env.AWS_REGION 
+});
+
+const s3Storage = multerS3({
+	s3: s3, 
+	bucket: "nookly", 
+	acl: "public-read", 
+	metadata: (req, file, cb) => {
+		cb(null, {fieldname: file.fieldname})
 	},
-	filename: function (req, file, cb) {
-		cb(null, Date.now() + '_' + file.originalname);
+	key: (req, file, cb) => {
+		const fileName = Date.now() + "_" + file.originalname;
+		cb(null, fileName);
 	}
 });
 
-var upload = multer({ storage: storage });
+const upload = multer({
+    storage: s3Storage,
+    limits: {
+        fileSize: 1024 * 1024 * 2 // 2mb file size
+    }
+})
 
 app.post('/upload', upload.single('listing-img'), function (req, res, next) {
-	res.status(200).json({
-		filename: req.file.filename
-	});
+	if (req.file) {
+		res.status(200).json({
+			filename: req.file.key
+		});
+	}
 });
 
 /* Sync sequelize models to the database, then turn on the server */
