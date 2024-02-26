@@ -24,7 +24,7 @@ const PORT = process.env.PORT || 3001;
 const hbs = exphbs.create({ helpers });
 
 const sess = {
-	secret: process.env.SESS_SECRET,
+	secret: 'nookly-cranly',
 	cookie: {
 		// Set the session time limit to 15 minutes
 		maxAge: 15 * 30 * 1000
