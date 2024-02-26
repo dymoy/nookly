@@ -30,7 +30,7 @@ The database is mapped according to the following schema:
   
 ## Installation 
 
-There is no installation necessary as it is deployed to Heroku. You can visit the deployed application [here](https://dymoy-nookly-ba5930951a44.herokuapp.com/) and try it out! 
+There is no installation necessary as this application is deployed to Heroku. You can visit the deployed application [here](https://dymoy-nookly-ba5930951a44.herokuapp.com/) and try it out! 
 
 If you would like to run the application locally, use the following steps:
 1. Clone this repository to your local machine. (For reference, visit the [Cloning a Repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) GitHub Docs article.)
@@ -44,15 +44,17 @@ If you would like to run the application locally, use the following steps:
   
 ## Dependencies
 This project requires the following npm package dependencies:
-1. [bcrypt](https://www.npmjs.com/package/bcrypt)
-2. [connect-session-sequelize](https://www.npmjs.com/package/connect-session-sequelize)
-3. [dotenv](https://www.npmjs.com/package/dotenv)
-4. [express](https://www.npmjs.com/package/express)
-5. [express-handlebars](https://www.npmjs.com/package/express-handlebars)
-6. [express-session](https://www.npmjs.com/package/express-session)
-7. [multer](https://www.npmjs.com/package/multer?activeTab=readme)
-8. [mysql2](https://www.npmjs.com/package/mysql2)
-9. [sequelize](https://www.npmjs.com/package/sequelize)
+1. [aws-sdk-js-v3](https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-s3)
+2. [bcrypt](https://www.npmjs.com/package/bcrypt)
+3. [connect-session-sequelize](https://www.npmjs.com/package/connect-session-sequelize)
+4. [dotenv](https://www.npmjs.com/package/dotenv)
+5. [express](https://www.npmjs.com/package/express)
+6. [express-handlebars](https://www.npmjs.com/package/express-handlebars)
+7. [express-session](https://www.npmjs.com/package/express-session)
+8. [multer](https://www.npmjs.com/package/multer?activeTab=readme)
+9. [multer-s3](https://github.com/anacronw/multer-s3#readme)
+10. [mysql2](https://www.npmjs.com/package/mysql2)
+11. [sequelize](https://www.npmjs.com/package/sequelize)
 
 ## Usage 
 
